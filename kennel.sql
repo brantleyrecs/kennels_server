@@ -60,4 +60,25 @@ INSERT INTO `Animal` VALUES (null, "Cleo", "Kennel", "Poodle", 2, 2);
 INSERT INTO `Animal` VALUES (null, "Popcorn", "Kennel", "Beagle", 3, 2);
 INSERT INTO `Animal` VALUES (null, "Curly", "Treatment", "Poodle", 4, 2);
 
+INSERT INTO `Animal` VALUES (null, "Daps", "Kennel", "Boxer", 2, 2);
 
+SELECT DISTINCT * FROM location
+JOIN employee on employee.location_id = location.id
+JOIN animal on animal.location_id = location.id
+WHERE location.id = 1
+
+
+SELECT
+    l.id,
+    l.name,
+    l.address,
+    e.name employee_name,
+    e.address employee_address,
+    a.name,
+    a.status,
+    a.breed
+FROM Location l
+JOIN Employee e
+    ON l.id = e.location_id
+JOIN Animal a
+    ON a.location_id = l.id

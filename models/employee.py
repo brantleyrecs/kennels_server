@@ -6,6 +6,7 @@ class Employee():
         self.name = full_name
         self.address = address
         self.location_id = location_id
+        self.location = None
 
         #extract first and last names
         name_pieces = full_name.split(" ")

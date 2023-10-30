@@ -10,12 +10,12 @@ def get_all_customers():
 
         db_cursor.execute("""
         SELECT
-            a.id,
-            a.name,
-            a.address,
-            a.email,
-            a.password
-        FROM customer a
+            c.id,
+            c.name,
+            c.address,
+            c.email,
+            c.password
+        FROM customer c
         """)
 
         customers = []
@@ -38,13 +38,13 @@ def get_single_customer(id):
 
         db_cursor.execute("""
         SELECT
-            a.id,
-            a.name,
-            a.address
-            a.email,
-            a.password
-        FROM customer a
-        WHERE a.id = ?
+            c.id,
+            c.name,
+            c.address
+            c.email,
+            c.password
+        FROM customer c
+        WHERE c.id = ?
         """, (id, ))
 
         data = db_cursor.fetchone()
@@ -78,3 +78,13 @@ def get_customer_by_email(email):
         customers.append(customer.__dict__)
 
     return customers
+
+def delete_customer(id):
+    """delete customer"""
+    with sqlite3.connect("./kennel.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM customer
+        WHERE id = ?
+        """, (id, ))
